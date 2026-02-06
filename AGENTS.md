@@ -12,6 +12,8 @@ Here's the rules:
 1. Tackle one item of a plan at a time. When the item is complete, run the tests. When the tests pass, commit the code and move onto the next item in the plan.
 1. Code should be logically structured according to idiomatic patterns for the stack context and ideally, write as little code as possible.
 1. Before creating any new plan you MUST reread AGENTS.md
+1. All of your commit messages should be conventional commit style.
+1. When you are done with work, please create a pull request for the work where the title of the PR is a summarised conventional commit style message.
 
 Here's the high level stack:
 
