@@ -11,11 +11,12 @@ Here's the rules:
 1. Write the tests ahead of the functionality and then write the functionality so that the tests pass. Never alter tests as a way to fix broken functionality. Test driven development. 
 1. Tackle one item of a plan at a time. When the item is complete, run the tests. When the tests pass, commit the code and move onto the next item in the plan.
 1. Code should be logically structured according to idiomatic patterns for the stack context and ideally, write as little code as possible.
+1. Before creating any new plan you MUST reread AGENTS.md
 
 Here's the high level stack:
 
-* Bun — runtime (like Node.js, not a framework)
-* Hono — HTTP framework (routing, middleware, JSX templating)
+* Bun — runtime
+* Hono — HTTP framework
 * Drizzle — ORM + migrations
 * PostgreSQL — database
 * Zod — validation
