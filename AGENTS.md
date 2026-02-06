@@ -19,7 +19,6 @@ Here's the high level stack:
 
 * Bun — runtime
 * Hono — HTTP framework
-* Drizzle — ORM + migrations
 * PostgreSQL — database
 * Zod — validation
 * Redis — caching (when needed)
