@@ -1,4 +1,4 @@
-0.0.1
+0.0.2
 
 
-- now with database connectivity
+- now has a homepage UI and is ready to deploy
