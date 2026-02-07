@@ -18,27 +18,6 @@
 
 import type { FC } from "hono/jsx";
 
-// --- Inline SVG icons ---
-// GitHub is inline SVG; LinkedIn is served as a static file.
-
-const GitHubIcon: FC<{ size?: number }> = ({ size = 80 }) => (
-  // GitHub Octocat logo — the familiar cat-in-circle mark
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M50 5C25.1 5 5 25.1 5 50c0 19.9 12.9 36.7 30.8 42.7 2.3.4 3.1-1 3.1-2.2 0-1.1 0-4.1-.1-8-12.5 2.7-15.2-6-15.2-6-2.1-5.2-5-6.6-5-6.6-4.1-2.8.3-2.7.3-2.7 4.5.3 6.9 4.6 6.9 4.6 4 6.9 10.5 4.9 13.1 3.7.4-2.9 1.6-4.9 2.8-6-10-1.1-20.5-5-20.5-22.2 0-4.9 1.8-8.9 4.6-12-.5-1.1-2-5.7.4-11.8 0 0 3.8-1.2 12.3 4.6 3.6-1 7.4-1.5 11.2-1.5 3.8 0 7.6.5 11.2 1.5 8.5-5.8 12.3-4.6 12.3-4.6 2.4 6.1.9 10.7.4 11.8 2.9 3.1 4.6 7.1 4.6 12 0 17.2-10.5 21-20.5 22.1 1.6 1.4 3.1 4.1 3.1 8.3 0 6-.1 10.8-.1 12.3 0 1.2.8 2.6 3.1 2.2C82.1 86.7 95 69.9 95 50 95 25.1 74.9 5 50 5z"
-      fill="#292f37"
-    />
-  </svg>
-);
-
 // --- Post data type ---
 // Hardcoded for now — later this will come from the database.
 interface Post {
@@ -81,7 +60,7 @@ const Hero: FC = () => (
         <img src="/static/linkedin.svg" alt="LinkedIn" width={80} height={80} />
       </a>
       <a href="https://github.com/treejamie" aria-label="GitHub">
-        <GitHubIcon />
+        <img src="/static/github.svg" alt="GitHub" width={80} height={80} />
       </a>
     </div>
   </section>
@@ -174,7 +153,7 @@ const Bio: FC = () => (
           <img src="/static/linkedin.svg" alt="LinkedIn" width={100} height={100} />
         </a>
         <a href="https://github.com/treejamie" aria-label="GitHub">
-          <GitHubIcon size={100} />
+          <img src="/static/github.svg" alt="GitHub" width={100} height={100} />
         </a>
       </div>
     </div>
