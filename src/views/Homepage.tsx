@@ -153,7 +153,7 @@ const Bio: FC = () => (
           <img src="/static/linkedin.svg" alt="LinkedIn" width={100} height={100} />
         </a>
         <a href="https://github.com/treejamie" aria-label="GitHub">
-          <img src="/static/github.svg" alt="GitHub" width={100} height={100} />
+          <img src="/static/github-white.svg" alt="GitHub" width={100} height={100} />
         </a>
       </div>
     </div>
