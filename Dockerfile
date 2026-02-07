@@ -31,6 +31,7 @@ COPY --from=builder --chown=nobody:root /app/node_modules ./node_modules
 COPY --chown=nobody:root package.json ./
 COPY --chown=nobody:root version.txt ./
 COPY --chown=nobody:root src ./src
+COPY --chown=nobody:root public ./public
 
 EXPOSE 3000
 

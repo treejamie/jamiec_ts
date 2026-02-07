@@ -1,0 +1,40 @@
+services:
+  web:
+    image: ghcr.io/treejamie/jamiec_ts:latest
+    pull_policy: always
+    ports:
+      - "3000:3000"
+    environment:
+      # Uses the same database as the Elixir source project
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@host.docker.internal:5432/jamiec_dev}
+
+    # Health check matching the Dockerfile
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 10s
+      retries: 3
+
+    # Restart policy
+    restart: unless-stopped
+
+    networks:
+      - jamiec_ts
+
+  cloudflared:
+    container_name: cloudflared-tunnel-ts
+    image: cloudflare/cloudflared:latest
+    pull_policy: always
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --url http://web:3000
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - web
+    networks:
+      - jamiec_ts
+
+networks:
+  jamiec_ts:
+    driver: bridge
