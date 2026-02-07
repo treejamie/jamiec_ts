@@ -1,5 +1,6 @@
 // @jsxImportSource hono/jsx
 
+import { resolve } from "node:path";
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import Layout from "./views/Layout.tsx";
@@ -8,8 +9,9 @@ import Homepage from "./views/Homepage.tsx";
 const app = new Hono();
 
 // Serve static files (CSS, images, etc.) from the public/ directory.
-// Requests to /static/* are mapped to public/static/* on disk.
-app.use("/static/*", serveStatic({ root: "./public/" }));
+// Use an absolute path so it resolves correctly in Docker where
+// the entry point is src/index.ts but files are at /app/public/.
+app.use("/static/*", serveStatic({ root: resolve(import.meta.dir, "../public/") }));
 
 // Homepage — renders the full page with Layout wrapper.
 // c.html() takes a JSX element (or string) and returns a Response
