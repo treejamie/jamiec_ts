@@ -19,25 +19,7 @@
 import type { FC } from "hono/jsx";
 
 // --- Inline SVG icons ---
-// Using inline SVGs keeps the project dependency-free and avoids
-// needing a static file server for icons.
-
-const LinkedInIcon: FC<{ size?: number }> = ({ size = 80 }) => (
-  // LinkedIn brand icon — blue rounded square with "in" mark
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect width="100" height="100" rx="12" fill="#0A66C2" />
-    <path
-      d="M25 42h12v38H25V42zm6-19a7 7 0 110 14 7 7 0 010-14zm17 19h11.5v5.2h.2c1.6-3 5.5-6.2 11.3-6.2 12.1 0 14.3 8 14.3 18.3V80H73.5V61.5c0-4.4-.1-10-6.1-10-6.1 0-7 4.8-7 9.7V80H48.5V42z"
-      fill="white"
-    />
-  </svg>
-);
+// GitHub is inline SVG; LinkedIn is served as a static file.
 
 const GitHubIcon: FC<{ size?: number }> = ({ size = 80 }) => (
   // GitHub Octocat logo — the familiar cat-in-circle mark
@@ -96,7 +78,7 @@ const Hero: FC = () => (
     </div>
     <div class="hero__social">
       <a href="https://linkedin.com/in/jamiecurle" aria-label="LinkedIn">
-        <LinkedInIcon />
+        <img src="/static/linkedin.svg" alt="LinkedIn" width={80} height={80} />
       </a>
       <a href="https://github.com/treejamie" aria-label="GitHub">
         <GitHubIcon />
@@ -189,7 +171,7 @@ const Bio: FC = () => (
       </div>
       <div class="bio__social">
         <a href="https://linkedin.com/in/jamiecurle" aria-label="LinkedIn">
-          <LinkedInIcon size={100} />
+          <img src="/static/linkedin.svg" alt="LinkedIn" width={100} height={100} />
         </a>
         <a href="https://github.com/treejamie" aria-label="GitHub">
           <GitHubIcon size={100} />
