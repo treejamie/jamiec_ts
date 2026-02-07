@@ -1,13 +1,15 @@
 // @jsxImportSource hono/jsx
 
 import { Hono } from "hono";
-// Hono JSX components — these render to HTML strings on the server.
-// The pragma above tells Bun to use Hono's JSX runtime instead of
-// React's, so JSX compiles to Hono's html-string renderer.
+import { serveStatic } from "hono/bun";
 import Layout from "./views/Layout.tsx";
 import Homepage from "./views/Homepage.tsx";
 
 const app = new Hono();
+
+// Serve static files (CSS, images, etc.) from the public/ directory.
+// Requests to /static/* are mapped to public/static/* on disk.
+app.use("/static/*", serveStatic({ root: "./public/" }));
 
 // Homepage — renders the full page with Layout wrapper.
 // c.html() takes a JSX element (or string) and returns a Response
