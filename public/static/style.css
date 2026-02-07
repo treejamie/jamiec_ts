@@ -1,0 +1,253 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* SF Pro is Apple's system font. system-ui falls back on other OSes */
+  font-family: "SF Pro", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #292f37;
+}
+
+body {
+  min-height: 100vh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* === Section layout === */
+
+/* Each full-width section of the homepage */
+.section {
+  padding: 80px 69px;
+}
+
+.section--dark {
+  background-color: #292f37;
+  color: #f5f5f5;
+}
+
+/* Two-column layout: heading on left, content on right */
+.section__grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* === Typography === */
+
+.heading-xl {
+  font-size: clamp(64px, 8vw, 128px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: clamp(20px, 2.5vw, 36px);
+  font-weight: 510;
+  color: #989797;
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  max-width: 646px;
+}
+
+/* === Hero section === */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.hero__text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero__text .subtitle {
+  margin-top: 24px;
+}
+
+.hero__social {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hero__social svg,
+.hero__social img {
+  width: 80px;
+  height: 80px;
+}
+
+/* === Posts section === */
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.post-entry__title {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.post-entry__date {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.post-entry__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Tag badge — bordered pill with coloured text */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 17px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* === Timeline section === */
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  min-height: 400px;
+}
+
+/* Vertical line running through the timeline */
+.timeline__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #d0d0d0;
+  border-radius: 2px;
+}
+
+/* Circular dot on the timeline */
+.timeline__dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #d0d0d0;
+  position: relative;
+  z-index: 1;
+  margin: 40px 0;
+}
+
+.timeline__dot--active {
+  background: #e74c3c;
+  width: 32px;
+  height: 32px;
+}
+
+/* === Bio/Footer section === */
+
+.bio {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.bio__photo {
+  width: 268px;
+  height: 274px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bio__text {
+  flex: 1;
+  min-width: 280px;
+  font-size: 16px;
+  font-weight: 510;
+  line-height: 1.6;
+}
+
+.bio__text p + p {
+  margin-top: 16px;
+}
+
+.bio__text strong {
+  font-weight: 860;
+}
+
+.bio__text b {
+  font-weight: 700;
+}
+
+.bio__social {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.bio__social svg {
+  width: 100px;
+  height: 100px;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 24px;
+  }
+  .section__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__social svg,
+  .hero__social img {
+    width: 48px;
+    height: 48px;
+  }
+  .bio {
+    flex-direction: column;
+  }
+  .bio__social {
+    flex-direction: row;
+  }
+  .bio__social svg {
+    width: 60px;
+    height: 60px;
+  }
+}
