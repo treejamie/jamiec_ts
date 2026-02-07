@@ -5,6 +5,8 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import Layout from "./views/Layout.tsx";
 import Homepage from "./views/Homepage.tsx";
+import PostPage from "./views/PostPage.tsx";
+import { getPublishedPostBySlug } from "./content/queries";
 
 const app = new Hono();
 
@@ -30,8 +32,17 @@ app.get("/health", (c) => {
 });
 
 // Public post view by slug
-app.get("/post/:slug", (c) => {
-  return c.text("hello");
+app.get("/post/:slug", async (c) => {
+  const slug = c.req.param("slug");
+  const post = await getPublishedPostBySlug(slug);
+  if (!post) {
+    return c.notFound();
+  }
+  return c.html(
+    <Layout title={post.title} description={post.description ?? undefined}>
+      <PostPage post={post} />
+    </Layout>
+  );
 });
 
 // Office routes — will be auth-protected later
