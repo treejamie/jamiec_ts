@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/treejamie/jamiec:latest
+    image: ghcr.io/treejamie/jamiec_ts:latest
     pull_policy: always
     ports:
       - "3000:3000"
