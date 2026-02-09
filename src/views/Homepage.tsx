@@ -136,8 +136,10 @@ const Bio: FC = () => (
         <p>
           <strong>Jamie Curle</strong> is a{" "}
           <b>privacy focused technology professional</b> and founder. Currently
-          he's working at Privacy Posture leading the design, development and
-          deployment of privacy focused engineering tools to market.
+          he's splitting his time between Privacy Posture where he's leading the design, development and
+          deployment of privacy focused engineering tools for the developer market and Trees & Code where
+          he offers fractional CTO, Technical Leadership (IC/EM), engineering capacity and privacy/infosec
+          services.
         </p>
         <p>
           He's a qualified ISO27001 lead implementer and has held CTO and CIO
