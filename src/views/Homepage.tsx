@@ -51,7 +51,7 @@ const Hero: FC = () => (
     <div class="hero__text">
       <h1 class="heading-xl">Jamie Curle</h1>
       <p class="subtitle">
-        Lead Software Engineer specialising in Elixir, privacy engineering, and
+        Technical Lead / Manager (IC/EM) specialising in Python, Elixir, privacy engineering, and
         security-first systems. Part-time arborist and aspiring woodsman.
       </p>
     </div>
