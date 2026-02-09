@@ -149,6 +149,7 @@ const Bio: FC = () => (
           He spend his spare time working with trees, either in woodworking,
           arboriculture or woodland management.
         </p>
+        <p>hello world</p>
       </div>
       <div class="bio__social">
         <a href="https://linkedin.com/in/jamiecurle" aria-label="LinkedIn">
