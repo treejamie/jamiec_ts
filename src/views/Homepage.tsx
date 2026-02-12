@@ -11,37 +11,31 @@
  *
  * The page has four sections:
  *   1. Hero — name, subtitle, social links
- *   2. Posts — recent posts list (hardcoded for now)
+ *   2. Posts — recent posts list
  *   3. Timeline — visual timeline (placeholder)
  *   4. Bio/Footer — photo, bio text, social links
  */
 
 import type { FC } from "hono/jsx";
 
-// --- Post data type ---
-// Hardcoded for now — later this will come from the database.
-interface Post {
-  title: string;
-  date: string;
+interface Tag {
+  id: number;
   tag: string;
-  tagColor: string;
+  slug: string;
 }
 
-// Placeholder posts matching the Figma design
-const posts: Post[] = [
-  {
-    title: "Europe LTD - How Legislation is crafted in Europe.",
-    date: "6th January 2026",
-    tag: "privacy",
-    tagColor: "#fcb700",
-  },
-  {
-    title: "AI Development. Finally, I don't need to type.",
-    date: "2nd January 2026",
-    tag: "engineering",
-    tagColor: "#00d3bb",
-  },
-];
+interface Post {
+  id: number;
+  title: string;
+  slug: string;
+  description: string | null;
+  inserted_at: Date;
+  tags: Tag[];
+}
+
+interface HomepageProps {
+  posts: Post[];
+}
 
 // --- Section components ---
 
@@ -69,28 +63,36 @@ const Hero: FC = () => (
 /** A single post entry in the posts list */
 const PostEntry: FC<{ post: Post }> = ({ post }) => (
   <article class="post-entry">
-    <div class="post-entry__header">
+    <a href={`/post/${post.slug}`} class="post-entry__header">
       <div>
         <h3 class="post-entry__title">{post.title}</h3>
-        <p class="post-entry__date">{post.date}</p>
+        <p class="post-entry__date">
+          {post.inserted_at.toLocaleDateString("en-GB", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
       </div>
-      {/* Badge uses currentColor so the border matches the text */}
-      <span class="badge" style={{ color: post.tagColor }}>
-        {post.tag}
-      </span>
-    </div>
+      {post.tags.length > 0 && (
+        <div class="post-entry__tags">
+          {post.tags.map((tag) => (
+            <span key={tag.id} class="badge">{tag.tag}</span>
+          ))}
+        </div>
+      )}
+    </a>
   </article>
 );
 
 /** Posts section: dark background with heading on left, posts on right */
-const Posts: FC = () => (
+const Posts: FC<{ posts: Post[] }> = ({ posts }) => (
   <section class="section section--dark">
     <div class="section__grid">
       <h2 class="heading-xl">posts</h2>
       <div class="post-list">
-        {/* Map over posts array — same pattern as React's list rendering */}
         {posts.map((post) => (
-          <PostEntry post={post} />
+          <PostEntry key={post.id} post={post} />
         ))}
       </div>
     </div>
@@ -172,10 +174,10 @@ const Bio: FC = () => (
  * When passed to c.html(), Hono serialises it to an HTML string
  * and sends it as the response body.
  */
-const Homepage: FC = () => (
+const Homepage: FC<HomepageProps> = ({ posts }) => (
   <>
     <Hero />
-    <Posts />
+    <Posts posts={posts} />
     <Timeline />
     <Bio />
   </>
