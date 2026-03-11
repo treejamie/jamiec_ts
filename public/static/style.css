@@ -241,7 +241,7 @@ a {
 }
 
 .post__title {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "SF Pro", system-ui, -apple-system, sans-serif;
   font-size: 64px;
   font-weight: 700;
   color: #000;
