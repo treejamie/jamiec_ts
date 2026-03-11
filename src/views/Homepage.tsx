@@ -11,19 +11,28 @@
  *
  * The page has four sections:
  *   1. Hero — name, subtitle, social links
- *   2. Posts — recent posts list (hardcoded for now)
+ *   2. Posts — recent posts list
  *   3. Timeline — visual timeline (placeholder)
  *   4. Bio/Footer — photo, bio text, social links
  */
 
 import type { FC } from "hono/jsx";
 
-// --- Post data type ---
+interface Tag {
+  id: number;
+  tag: string;
+  slug: string;
+}
+
 interface Post {
+  id: number;
   title: string;
   slug: string;
+  description: string | null;
   inserted_at: Date;
+  tags: Tag[];
 }
+
 
 interface HomepageProps {
   posts: Post[];
@@ -54,22 +63,27 @@ const Hero: FC = () => (
 
 /** A single post entry in the posts list */
 const PostEntry: FC<{ post: Post }> = ({ post }) => (
-  <a href={`/post/${post.slug}`}>
-    <article class="post-entry">
-      <div class="post-entry__header">
-        <div>
-          <h3 class="post-entry__title">{post.title}</h3>
-          <p class="post-entry__date">
-            {new Date(post.inserted_at).toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
+  <article class="post-entry">
+    <a href={`/post/${post.slug}`} class="post-entry__header">
+      <div>
+        <h3 class="post-entry__title">{post.title}</h3>
+        <p class="post-entry__date">
+          {post.inserted_at.toLocaleDateString("en-GB", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
       </div>
-    </article>
-  </a>
+      {post.tags.length > 0 && (
+        <div class="post-entry__tags">
+          {post.tags.map((tag) => (
+            <span key={tag.id} class="badge">{tag.tag}</span>
+          ))}
+        </div>
+      )}
+    </a>
+  </article>
 );
 
 /** Posts section: dark background with heading on left, posts on right */
@@ -79,7 +93,7 @@ const Posts: FC<{ posts: Post[] }> = ({ posts }) => (
       <h2 class="heading-xl">posts</h2>
       <div class="post-list">
         {posts.map((post) => (
-          <PostEntry post={post} />
+          <PostEntry key={post.id} post={post} />
         ))}
       </div>
     </div>

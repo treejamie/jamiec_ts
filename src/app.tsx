@@ -6,7 +6,7 @@ import { serveStatic } from "hono/bun";
 import Layout from "./views/Layout.tsx";
 import Homepage from "./views/Homepage.tsx";
 import PostPage from "./views/PostPage.tsx";
-import { getPublishedPosts, getPublishedPostBySlug } from "./content/queries";
+import { getAllPublishedPosts, getPublishedPostBySlug } from "./content/queries";
 
 const app = new Hono();
 
@@ -19,7 +19,7 @@ app.use("/static/*", serveStatic({ root: resolve(import.meta.dir, "../public/") 
 // c.html() takes a JSX element (or string) and returns a Response
 // with Content-Type: text/html.
 app.get("/", async (c) => {
-  const posts = await getPublishedPosts();
+  const posts = await getAllPublishedPosts();
   return c.html(
     <Layout>
       <Homepage posts={posts} />
