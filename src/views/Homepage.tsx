@@ -33,6 +33,7 @@ interface Post {
   tags: Tag[];
 }
 
+
 interface HomepageProps {
   posts: Post[];
 }
